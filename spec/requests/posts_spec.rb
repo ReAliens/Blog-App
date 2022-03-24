@@ -1,37 +1,37 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe "Posts controller", type: :request do
-  describe "GET /index" do
+RSpec.describe 'Posts controller', type: :request do
+  describe 'GET /index' do
     before :each do
-      get "/users/1/posts"
+      get '/users/1/posts'
     end
-    it "renders template" do
+    it 'renders template' do
       expect(response).to render_template(:index)
     end
 
-    it "correct status" do
+    it 'correct status' do
       expect(response.status).to eq(200)
     end
 
-    it "body includes correct text" do
-      expect(response.body).to include("display list of posts")
+    it 'body includes correct text' do
+      expect(response.body).to include('display list of posts')
     end
   end
 
-  describe "GET /show" do
+  describe 'GET /show' do
     before :each do
-      get "/users/1/posts/2"
+      get '/users/1/posts/2'
     end
-    it "renders template" do
+    it 'renders template' do
       expect(response).to render_template(:show)
     end
 
-    it "correct status" do
+    it 'correct status' do
       expect(response.status).to eq(200)
     end
 
-    it "body includes correct text" do
-      expect(response.body).to include("display certain user posts ")
+    it 'body includes correct text' do
+      expect(response.body).to include('display certain user posts ')
     end
   end
 end
