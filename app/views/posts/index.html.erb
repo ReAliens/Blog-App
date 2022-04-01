@@ -1,1 +1,39 @@
-<h1> display list of posts </h1>
+<section class="users-container">
+  <% user = User.where(id: params[:user_id])[0] %>
+  <% if user %>
+ <div class="user-card">
+<div class="user-image">
+<img alt="user image" src="<%= user.photo %>"> 
+</div>
+<div class="user-info">
+<h1 class="user-name" ><%= user.name %> </h1>
+<span class="user-posts">Number of Posts : <%= user.posts.length %> </span>
+</div>
+</div>
+<ul class="posts-list">
+<% user.posts.each_with_index do |post, index| %>
+<a href="<%= users_path + "/" + user.id.to_s + "/posts/" + post.id.to_s %>">
+<li class="post">
+<h1> Post # <%= index + 1 %> </h1>
+<h3><%= post.title %></h3>
+<p><%= post.text %></p>
+<span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+</li>
+<% if post.comments.length != 0 %>
+<div class="comments">
+<% post.recent_comments.each do |comment| %>
+<li>
+<span><%= comment.author.name %> : </span>
+<span> <%= comment.text %> </span>
+</li>
+<% end %>
+</div>
+
+<% end %>
+<% end %>
+</a>
+</ul>
+<% else %>
+<h2> Not Found</h2>
+<% end %>
+</section> 

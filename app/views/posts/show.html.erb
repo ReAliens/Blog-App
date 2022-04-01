@@ -1,1 +1,33 @@
-<h1> display certain user posts </h1>
+<section class="post-section">
+  <% user = User.where(id: params[:user_id])[0] %>
+  <% if user %>
+    <% post = user.posts.where(id: params[:id])[0] %>
+    <% if post %>
+    <div class="post-container">
+    <div class="post-box">
+    <span class="post-header"><%= post.title %> By : <%= post.author.name %></span>
+    <span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+    </div>
+    <p>
+    <%= post.text %>
+    </p>
+    </div>
+    <% if post.comments.length != 0 %>
+<div class="comments">
+<% post.recent_comments.each do |comment| %>
+<li>
+<span><%= comment.author.name %> : </span>
+<span> <%= comment.text %> </span>
+</li>
+<% end %>
+</div>
+<% else %>
+<h3>No Comments added </h3>
+<% end %>
+      <% else %>
+    <h2>Not founded</h2>
+    <% end %>
+  <% else %>
+    <h2>Not founded</h2>
+  <% end %>
+</section> 

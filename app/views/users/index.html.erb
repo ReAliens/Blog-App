@@ -1,6 +1,15 @@
-<section class="users">
+<section class="users-container">
 <% User.all.each do |user| %>
-<%# <a href="<%= users_path + "/" + user.id.to_s %>" class=""> %>
-user
+<a href="<%= users_path + '/' + user.id.to_s %>" class="user-link">
+<div class="user-card">
+<div class="user-image">
+<img alt="user image" src="<%= user.photo %>"> 
+</div>
+<div class="user-info">
+<h1 class="user-name" ><%= user.name %> </h1>
+<span class="user-posts">Number of Posts : <%= user.posts.length %> </span>
+</div>
+</div>
+</a>
 <% end %>
 </section>
