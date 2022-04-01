@@ -1,22 +1,21 @@
 <section class="users-container">
-  <% user = User.where(id: params[:id])[0] %>
-  <% if user %>
+  <% if @user %>
 <div class="user-card">
 <div class="user-image">
-<img alt="user image" src="<%= user.photo %>"> 
+<img alt="user image" src="<%= @user.photo %>"> 
 </div>
 <div class="user-info">
-<h1 class="user-name" ><%= user.name %> </h1>
-<span class="user-posts">Number of Posts : <%= user.posts.length %> </span>
+<h1 class="user-name" ><%= @user.name %> </h1>
+<span class="user-posts">Number of Posts : <%= @user.posts.length %> </span>
 </div>
 </div>
 <div class="bio">
 <p>Bio: </p>
-<p><%= user.bio %></p>
+<p><%= @user.bio %></p>
 </div>
 <ul class="posts-list">
-<% user.recent_posts.each_with_index do |post, index| %>
-<a href="<%= users_path + "/" + user.id.to_s + "/posts/" + post.id.to_s %>">
+<% @user.recent_posts.each_with_index do |post, index| %>
+<a href="<%= users_path + "/" + @user.id.to_s + "/posts/" + post.id.to_s %>">
 <li class="post">
 <h1> Post # <%= index + 1 %> </h1>
 <h3><%= post.title %></h3>
@@ -26,7 +25,7 @@
 </a>
 <% end %>
 </ul>
-<a class="post-see-more" href="<%= users_path + "/" + user.id.to_s + "/posts" %>">See all posts</a>
+<a class="post-see-more" href="<%= users_path + "/" + @user.id.to_s + "/posts" %>">See all posts</a>
 <% else %>
 <h2>Not Found</h2>
 <% end %>
