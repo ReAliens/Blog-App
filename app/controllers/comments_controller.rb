@@ -5,10 +5,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = if @comment.save
-          "Comment created Successfully"
-        else
-          "something went wrong"
-        end
+                         'Comment created Successfully'
+                       else
+                         'something went wrong'
+                       end
       format.html { redirect_to request.path }
     end
   end

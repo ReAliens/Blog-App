@@ -5,10 +5,10 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = if @like.save
-          "Liked"
-        else
-          "something went wrong"
-        end
+                         'Liked'
+                       else
+                         'something went wrong'
+                       end
       format.html { redirect_to request.path }
     end
   end
