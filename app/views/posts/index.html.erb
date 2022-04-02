@@ -16,7 +16,9 @@
 <h1> Post # <%= index + 1 %> </h1>
 <h3><%= post.title %></h3>
 <p><%= post.text %></p>
+</a>
 <span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+<%= render partial: "posts/like", locals: { url: "/users/#{@user.id}/posts/#{post.id}/like", post: post } %>
 </li>
 <% if post.comments.length != 0 %>
 <div class="comments">
@@ -30,7 +32,6 @@
 
 <% end %>
 <% end %>
-</a>
 </ul>
 <% else %>
 <h2> Not Found</h2>

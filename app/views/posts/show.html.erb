@@ -7,11 +7,13 @@
     <div class="post-box">
     <span class="post-header"><%= post.title %> By : <%= post.author.name %></span>
     <span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+    <%= render partial: "posts/like", locals: { url: "/users/#{user.id}/posts/#{post.id}/like", post: post } %>
     </div>
     <p>
     <%= post.text %>
     </p>
     </div>
+<%= render partial: "posts/add_comment" %>
     <% if post.comments.length != 0 %>
 <div class="comments">
 <% post.recent_comments.each do |comment| %>

@@ -21,10 +21,14 @@
 <h3><%= post.title %></h3>
 <p><%= post.text %></p>
 <span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+<%= render partial: 'posts/like', locals: { url: "/users/#{@user.id}/posts/#{post.id}/like", post: post } %>
 </li>
 </a>
 <% end %>
 </ul>
+  <% if @user == current_user %>
+      <%= render partial: "posts/new" %>
+    <% end %>
 <a class="post-see-more" href="<%= users_path + "/" + @user.id.to_s + "/posts" %>">See all posts</a>
 <% else %>
 <h2>Not Found</h2>
