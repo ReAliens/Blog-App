@@ -3,11 +3,12 @@ class LikesController < ApplicationController
     @like = current_user.likes.new(like_params)
 
     respond_to do |format|
-      if @like.save
-        format.html { redirect_to request.path, params: { success: true } }
-      else
-        format.html { redirect_to request.path, params: { success: false } }
-      end
+      flash[:notice] = if @like.save
+                         'Liked'
+                       else
+                         'something went wrong'
+                       end
+      format.html { redirect_to request.path }
     end
   end
 

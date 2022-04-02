@@ -3,11 +3,12 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to request.path, params: { success: true } }
-      else
-        format.html { redirect_to request.path, params: { success: false } }
-      end
+      flash[:notice] = if @comment.save
+                         'Comment created Successfully'
+                       else
+                         'something went wrong'
+                       end
+      format.html { redirect_to request.path }
     end
   end
 
