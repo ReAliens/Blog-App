@@ -7,6 +7,7 @@
     <div class="post-box">
     <span class="post-header"><%= post.title %> By : <%= post.author.name %></span>
     <span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
+    <%= render partial: "posts/like", locals: { url: "/users/#{user.id}/posts/#{post.id}/like", post: post } %>
     </div>
     <p>
     <%= post.text %>
@@ -19,6 +20,7 @@
 <span><%= comment.author.name %> : </span>
 <span> <%= comment.text %> </span>
 </li>
+<%= render partial: "posts/add_comment" %>
 <% end %>
 </div>
 <% else %>
