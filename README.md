@@ -23,8 +23,12 @@ cd Bolg-App
 ### Prerequisites
 
 -Ruby
+-rails version 7.x gem package
 
-
+### run project
+```
+rails s
+```
 ## Authors
 
 👤 **AHMED REDA**
