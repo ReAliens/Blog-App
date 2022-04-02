@@ -13,6 +13,7 @@
     <%= post.text %>
     </p>
     </div>
+<%= render partial: "posts/add_comment" %>
     <% if post.comments.length != 0 %>
 <div class="comments">
 <% post.recent_comments.each do |comment| %>
@@ -20,7 +21,6 @@
 <span><%= comment.author.name %> : </span>
 <span> <%= comment.text %> </span>
 </li>
-<%= render partial: "posts/add_comment" %>
 <% end %>
 </div>
 <% else %>
