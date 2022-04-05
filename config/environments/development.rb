@@ -58,6 +58,16 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    user_name: "buyananderson@gmail.com",
+    password: "bonheure",
+    authentication: "plain",
+    enable_starttls_auto: true,
+  }
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
