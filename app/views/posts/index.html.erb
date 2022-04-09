@@ -1,39 +1,34 @@
-<section class="users-container">
-  <% if @user %>
- <div class="user-card">
-<div class="user-image">
-<img alt="user image" src="<%= @user.photo %>"> 
-</div>
-<div class="user-info">
-<h1 class="user-name" ><%= @user.name %> </h1>
-<span class="user-posts">Number of Posts : <%= @user.posts.length %> </span>
-</div>
-</div>
-<ul class="posts-list">
-<% @user.posts.each_with_index do |post, index| %>
-<a href="<%= users_path + "/" + @user.id.to_s + "/posts/" + post.id.to_s %>">
-<li class="post">
-<h1> Post # <%= index + 1 %> </h1>
-<h3><%= post.title %></h3>
-<p><%= post.text %></p>
-</a>
-<span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
-<%= render partial: "posts/like", locals: { url: "/users/#{@user.id}/posts/#{post.id}/like", post: post } %>
-</li>
-<% if post.comments.length != 0 %>
-<div class="comments">
-<% post.recent_comments.each do |comment| %>
-<li>
-<span><%= comment.author.name %> : </span>
-<span> <%= comment.text %> </span>
-</li>
-<% end %>
-</div>
-
-<% end %>
-<% end %>
-</ul>
-<% else %>
-<h2> Not Found</h2>
-<% end %>
-</section> 
+<section class='all-posts'>
+  <div class="show-user" >
+    <%= render "shared/user", :user => @user %>
+  </div>
+  <% if @posts.empty? %>
+    <p>User has no posts yet</p>
+  <% else %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= render 'shared/post', :post => post %>
+        <% if post.recent_comments != [] %>
+        <div class="comments">
+          <ul class="progress-bar">
+            <% post.recent_comments.each do |comment| %>
+              <li class="comments-list" >
+                <p><%= comment.author.name %>: <%= comment.text %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= button_to 'View more posts' %>
+  <%= link_to new_post_path do %>
+    <div class="posts-btn">
+      <%= image_tag 'add.svg' %>
+      <p>Create Post</p>
+    </div>
+  <% end %>
+</section>

@@ -1,1 +1,8 @@
-<%= render partial: 'posts/new' %> 
+<div  class="form-heading">
+  <h2>Add New Post</h2>
+  <hr>
+</div>
+
+<div class="form-group">
+  <%= render 'shared/form', post: @post %>
+</div>
