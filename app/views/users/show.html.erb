@@ -1,36 +1,24 @@
-<section class="users-container">
-  <% if @user %>
-<div class="user-card">
-<div class="user-image">
-<img alt="user image" src="<%= @user.photo %>"> 
-</div>
-<div class="user-info">
-<h1 class="user-name" ><%= @user.name %> </h1>
-<span class="user-posts">Number of Posts : <%= @user.posts.length %> </span>
-</div>
-</div>
-<div class="bio">
-<p>Bio: </p>
-<p><%= @user.bio %></p>
-</div>
-<ul class="posts-list">
-<% @user.recent_posts.each_with_index do |post, index| %>
-<a href="<%= users_path + "/" + @user.id.to_s + "/posts/" + post.id.to_s %>">
-<li class="post">
-<h1> Post # <%= index + 1 %> </h1>
-<h3><%= post.title %></h3>
-<p><%= post.text %></p>
-<span class="post-info">Comments: <%= post.comments.length %>, Likes: <%= post.likes.length %></span>
-<%= render partial: 'posts/like', locals: { url: "/users/#{@user.id}/posts/#{post.id}/like", post: post } %>
-</li>
-</a>
-<% end %>
-</ul>
-  <% if @user == current_user %>
-      <%= render partial: "posts/new" %>
-    <% end %>
-<a class="post-see-more" href="<%= users_path + "/" + @user.id.to_s + "/posts" %>">See all posts</a>
-<% else %>
-<h2>Not Found</h2>
-<% end %>
-</section> 
+<section class="show-user">
+  <%= render "shared/user", :user => @user %>
+  <div>
+    <h5>Bio</h5>
+    <p><%= @user.bio %></p>
+  </div>
+  <div>
+    <ul>
+      <% @user.fetch_recent_posts.each do |post| %>
+        <%= render 'shared/post', :post => post %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="links" >
+    <button><%= link_to 'See all users', users_path %></button>
+    <button><%= link_to 'See all posts', user_posts_path(@user) %></button>
+  </div>
+  <%= link_to new_post_path do %>
+    <div class="posts-btn">
+      <%= image_tag 'add.svg' %>
+      <p>Create Post</p>
+    </div>
+  <% end %>
+</section>
