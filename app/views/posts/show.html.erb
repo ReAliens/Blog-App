@@ -2,7 +2,7 @@
   <div class="full-post">
     <div>
       <h5><%= @post.title %> by <%= @post.author.name %></h5>
-      <p>
+      <p> 
         <small>Comments: <%= @post.comments_counter || 0 %>, </small>
         <small> Likes: <%= @post.likes_counter || 0 %></small>
       </p>
@@ -10,29 +10,29 @@
     <p class="bold"><%= @post.text %></p>
   </div>
   <% if @post.comments != [] %>
-    <div class="comments">
-      <ul>
-        <% @post.comments.each do |comment| %>
-          <li>
-            <p><%= comment.author.name %>: <%= comment.text %></p>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="comments">
+    <ul>
+      <% @post.comments.each do |comment| %>
+        <li>
+          <p><%= comment.author.name %>: <%= comment.text %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
   <button class='post-btn'>
-    <%= link_to 'See all posts', user_posts_path(@post.author) %>
+    <%= link_to "See all posts", user_posts_path(@post.author) %>
   </button>
   <%= link_to new_post_path do %>
     <div class="posts-btn">
-      <%= image_tag 'add.svg' %>
+      <%= image_tag "add.svg" %>
       <p>Create Post</p>
     </div>
   <% end %>
   <% if can? :destroy, @post %>
-    <%= button_to posts_delete_path, method: :delete, class: "posts-btn del-btn" do %>
-      <%= image_tag 'delete.svg' %>
-      <p>Delete Post</p>
+      <%= button_to posts_delete_path, method: :delete, class: "posts-btn del-btn" do %>
+        <%= image_tag "delete.svg" %>
+         <p>Delete Post</p>
+      <% end %>
     <% end %>
-  <% end %>
 </section>
