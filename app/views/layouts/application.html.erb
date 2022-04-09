@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track" => "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
     <%= render 'shared/header' %>
     <% flash.each do |type, msg| %>
-        <% if type == 'alert' %>
-        <div class="flash-msg alert">
-          <%= msg %>
+      <% if type == 'alert' %>
+        <div class="flash-msg">          <%= msg %>
         </div>
-        <% else %>
+      <% else %>
         <div class="flash-msg">
           <%= msg %>
         </div>
-        <% end %>
-
+      <% end %>
     <% end %>
     <main>
       <%= yield %>
