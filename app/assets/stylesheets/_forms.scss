@@ -1,5 +1,9 @@
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
+
+.field_with_errors > input[type="text"] {
+  outline: solid 2px red;
+}
 
 .form-group {
   form {
@@ -30,7 +34,7 @@
         font-family: $font-1;
       }
 
-      input[type='submit'] {
+      input[type="submit"] {
         @include button-1;
 
         margin-top: 10px;
@@ -85,10 +89,6 @@
   color: red;
   font-family: $font-1;
   text-align: left;
-}
-
-.field_with_errors > input[type='text'] {
-  outline: solid 2px red;
 }
 
 .field.check {

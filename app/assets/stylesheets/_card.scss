@@ -1,7 +1,8 @@
 /* stylelint-disable no-descending-specificity */
-@import 'variables';
-@import 'mixins';
-@import 'keyframes';
+
+@import "variables";
+@import "mixins";
+@import "keyframes";
 
 li.card {
   @include display(row, initial, center);
@@ -40,7 +41,7 @@ li.card {
       box-shadow: $shadow-3;
     }
 
-    > a {
+    >a {
       div {
         @include display(row, space-between, center);
 
@@ -55,7 +56,7 @@ li.card {
       }
     }
 
-    > div {
+    >div {
       @include display(row, space-between, center);
 
       a {
