@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @comment = Comment.new
     @post = Post.includes(:comments, :likes).find(params[:post_id])
@@ -10,7 +12,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to user_post_path(current_user, @comment.post), notice: 'Comment created successfully' }
+        format.html { redirect_to user_post_path(current_user, @comment.post), notice: 'Comment was made successfully' }
       else
         format.html { render :new, status: :unprocessable_entity, notice: 'something went wrong' }
       end
@@ -18,12 +20,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @comment = @user.posts.find(params[:post_id]).comments.find(params[:id])
+    @comment = Comment.find_by(post_id: params[:post_id])
+    authorize! :destroy, @comment
     @comment.destroy
-    flash[:notice] = 'Comment deleted'
-
-    redirect_to user_post_path(@user, @comment.post)
+    flash[:notice] = 'Comment deleted successfully'
+    redirect_to user_post_path(@comment.author, @comment.post)
   end
 
   private

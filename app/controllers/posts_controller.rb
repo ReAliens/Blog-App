@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @posts = Post.includes(:comments, :likes).where(author_id: params[:user_id])
     @user = User.find(params[:user_id])
@@ -20,7 +22,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to user_posts_url(current_user), notice: 'Post created successfully' }
+        format.html { redirect_to user_posts_url(current_user), notice: 'Post was created successfully' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -29,10 +31,10 @@ class PostsController < ApplicationController
 
   def destroy
     @user = current_user
-    @post = @user.posts.find(params[:id])
+    authorize! :destroy, @post
     @post.destroy
     flash[:notice] = 'Post deleted'
-    redirect_to user_posts_path(@user)
+    redirect_to user_posts_path(@post.author)
   end
 
   private

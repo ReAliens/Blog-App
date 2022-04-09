@@ -8,7 +8,7 @@
   <ul>
     <% @posts.each do |post| %>
       <li>
-        <%= render 'shared/post', :post => post %>
+        <%= render "shared/post", :post => post %>
         <% if post.recent_comments != [] %>
         <div class="comments">
           <ul class="progress-bar">
@@ -24,10 +24,10 @@
     <% end %>
   </ul>
   <% end %>
-  <%= button_to 'View more posts' %>
+  <%= button_to "View more posts" %>
   <%= link_to new_post_path do %>
     <div class="posts-btn">
-      <%= image_tag 'add.svg' %>
+      <%= image_tag "add.svg" %>
       <p>Create Post</p>
     </div>
   <% end %>
