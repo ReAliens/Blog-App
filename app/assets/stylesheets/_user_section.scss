@@ -1,4 +1,5 @@
 /* stylelint-disable no-descending-specificity */
+
 @import 'variables';
 @import 'mixins';
 
@@ -23,7 +24,7 @@
     }
   }
 
-  > div {
+  >div {
     &:first-of-type {
       padding: 10px;
       background: #fff;
