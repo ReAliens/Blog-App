@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to user_post_path(current_user, @comment.post), notice: "Comment created successfully" }
+        format.html { redirect_to user_post_path(current_user, @comment.post), notice: 'Comment created successfully' }
       else
-        format.html { render :new, status: :unprocessable_entity, notice: "something went wrong" }
+        format.html { render :new, status: :unprocessable_entity, notice: 'something went wrong' }
       end
     end
   end

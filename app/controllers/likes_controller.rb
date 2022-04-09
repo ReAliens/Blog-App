@@ -5,9 +5,9 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to user_post_path(current_user, @post), notice: "Liked" }
+        format.html { redirect_to user_post_path(current_user, @post), notice: 'Liked' }
       else
-        flash[:error] = "something went wrong"
+        flash[:error] = 'something went wrong'
         format.html { redirect_to @post }
       end
     end
