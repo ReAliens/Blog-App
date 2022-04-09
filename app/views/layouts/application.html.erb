@@ -9,10 +9,11 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <% flash.each do |type, msg| %>
-      <% if type == 'alert' %>
-        <div class="flash-msg">          <%= msg %>
+      <% if type == "alert" %>
+        <div class="flash-msg">     
+             <%= msg %>
         </div>
       <% else %>
         <div class="flash-msg">
